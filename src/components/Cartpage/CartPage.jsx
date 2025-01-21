@@ -67,7 +67,7 @@ function CartPage() {
             </div>
           </div>
           <Link
-            to="/checkout"
+            // to="/checkout"
             className="block w-full mt-6 text-center bg-blue-600 text-white py-2 rounded-md"
           >
             Proceed to Checkout
