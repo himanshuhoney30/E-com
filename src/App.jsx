@@ -7,6 +7,9 @@ import "aos/dist/aos.css";
 import TopProducts from "./components/TopProducts/TopProducts";
 import Banner from "./components/Banner/Banner";
 import Footer from "./components/Footer/Footer";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import CartPage from "./components/Cartpage/CartPage";
+
 const App = () => {
 
   React.useEffect(() => {
@@ -21,12 +24,14 @@ const App = () => {
 
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
+      <BrowserRouter>
       <Navbar />
-      <Hero  />
-      <Products />
-      <TopProducts />
-      <Banner />
+      <Routes>
+        <Route path="/" element={<><Hero  /> <Products /> <TopProducts /> <Banner /></> } />
+        <Route path="/Cart" element={<CartPage />} />
+      </Routes>
       <Footer />
+      </BrowserRouter>
     </div>
   );
 };

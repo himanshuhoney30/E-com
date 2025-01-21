@@ -44,15 +44,12 @@ const Hero = ({ handleOrderPopup }) => {
 
   return (
     <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
-      {/* background pattern */}
       <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
-      {/* hero section */}
       <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-2">
-                {/* text content section */}
                 <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
                   <h1
                     data-aos="zoom-out"
@@ -74,10 +71,8 @@ const Hero = ({ handleOrderPopup }) => {
                     data-aos="fade-up"
                     data-aos-duration="500"
                     data-aos-delay="300"
-                  >
-                  </div>
+                  ></div>
                 </div>
-                {/* image section */}
                 <div className="order-1 sm:order-2">
                   <div
                     data-aos="zoom-in"
