@@ -1,22 +1,30 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, getCartTotal, increment, remove } from '../../Features/CartSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function CartPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cart, totalPrice, totalQuantity } = useSelector((state) => state.allCart);
 
   useEffect(() => {
     dispatch(getCartTotal());
   }, [dispatch, cart]);
 
+  const handleRemove = (item) => {
+    dispatch(remove(item));
+    if (cart.length === 1) {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="font-sans max-w-5xl max-md:max-w-xl mx-auto bg-white py-4">
       <h1 className="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
 
       <div className="grid md:grid-cols-3 gap-8 mt-16">
-        {/* Cart Items */}
+
         <div className="md:col-span-2 space-y-4">
           {cart.map((item) => (
             <div key={item.id} className="grid grid-cols-3 items-start gap-4">
@@ -29,7 +37,7 @@ function CartPage() {
                   <button
                     type="button"
                     className="mt-6 font-semibold text-red-500 text-xs flex items-center gap-1 shrink-0"
-                    onClick={() => dispatch(remove(item))}
+                    onClick={() => handleRemove(item)}
                   >
                     REMOVE
                   </button>
@@ -51,7 +59,7 @@ function CartPage() {
           ))}
         </div>
 
-        {/* Order Summary */}
+
         <div className="bg-gray-100 rounded-md p-4 h-max">
           <h3 className="text-lg max-sm:text-base font-bold text-gray-800 border-b border-gray-300 pb-2">
             Order Summary

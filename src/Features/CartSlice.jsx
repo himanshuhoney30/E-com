@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import detail from "../components/ProductData"; // Adjust the path if necessary
+import detail from "../components/ProductData"; 
 
 const initialState = {
   cart: [],
@@ -23,7 +23,7 @@ export const cartSlice = createSlice({
     getCartTotal: (state) => {
       const { totalQuantity, totalPrice } = state.cart.reduce(
         (cartTotal, cartItem) => {
-          const price = parseFloat(cartItem.price) || 0; // Ensure price is numeric
+          const price = parseFloat(cartItem.price) || 0; 
           const quantity = cartItem.quantity || 0;
           const itemTotal = price * quantity;
 
@@ -38,7 +38,7 @@ export const cartSlice = createSlice({
       );
 
       state.totalQuantity = totalQuantity;
-      state.totalPrice = parseFloat(totalPrice.toFixed(2)); // Ensure 2 decimal places
+      state.totalPrice = parseFloat(totalPrice.toFixed(2)); 
     },
     remove: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);

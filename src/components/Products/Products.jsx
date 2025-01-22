@@ -8,7 +8,7 @@ const Products = () => {
   const items = useSelector((state) => state.allCart.items);
 
   const [showAllProducts, setShowAllProducts] = useState(false);
-  const [visibleProducts, setVisibleProducts] = useState(4); // Initial visible products count
+  const [visibleProducts, setVisibleProducts] = useState(4);
 
   const handleShowAllProducts = () => {
     setShowAllProducts(true);
@@ -16,11 +16,11 @@ const Products = () => {
 
   const handleClosePopup = () => {
     setShowAllProducts(false);
-    setVisibleProducts(2); // Reset visible products when closing the popup
+    setVisibleProducts(2);
   };
 
   const handleLoadMore = () => {
-    setVisibleProducts((prev) => prev + 4); // Load 2 more products
+    setVisibleProducts((prev) => prev + 4);
   };
 
   return (
