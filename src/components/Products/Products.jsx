@@ -8,6 +8,7 @@ const Products = () => {
   const items = useSelector((state) => state.allCart.items);
 
   const [showAllProducts, setShowAllProducts] = useState(false);
+  const [visibleProducts, setVisibleProducts] = useState(4); // Initial visible products count
 
   const handleShowAllProducts = () => {
     setShowAllProducts(true);
@@ -15,6 +16,11 @@ const Products = () => {
 
   const handleClosePopup = () => {
     setShowAllProducts(false);
+    setVisibleProducts(2); // Reset visible products when closing the popup
+  };
+
+  const handleLoadMore = () => {
+    setVisibleProducts((prev) => prev + 4); // Load 2 more products
   };
 
   return (
@@ -33,7 +39,6 @@ const Products = () => {
           </p>
         </div>
         <div>
-          {/* Displaying only the first product */}
           {items.length > 0 && (
             <div
               data-aos="fade-up"
@@ -69,7 +74,6 @@ const Products = () => {
             </div>
           )}
 
-          {/* Button to open popup */}
           <div className="text-center mt-8">
             <button
               className="font-semibold bg-green-500 px-6 py-2 rounded hover:bg-green-700 transition-all"
@@ -79,7 +83,6 @@ const Products = () => {
             </button>
           </div>
 
-          {/* Popup Modal */}
           {showAllProducts && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white p-5 rounded-lg max-w-[95%] md:max-w-[800px] w-full max-h-[90%] overflow-y-auto">
@@ -93,7 +96,7 @@ const Products = () => {
                   </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                  {items.map((data) => (
+                  {items.slice(0, visibleProducts).map((data) => (
                     <div
                       key={data.id}
                       className="space-y-3 border p-3 rounded-md"
@@ -127,6 +130,16 @@ const Products = () => {
                     </div>
                   ))}
                 </div>
+                {visibleProducts < items.length && (
+                  <div className="text-center mt-4">
+                    <button
+                      className="font-semibold bg-green-500 px-6 py-2 rounded hover:bg-green-700 transition-all"
+                      onClick={handleLoadMore}
+                    >
+                      Load More
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           )}
